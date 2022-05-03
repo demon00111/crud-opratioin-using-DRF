@@ -10,22 +10,22 @@ def start_with_d(value):
     if value[0].lower() != 'd':
         raise serializers.ValidationError("name must be start with 'd' ")
 
-class StudentSerializer(serializers.Serializer):
+class StudentSerializer(serializers.ModelSerializer):
     # id = serializers.IntegerField()
-    name = serializers.CharField(max_length=100, validators=[start_with_d])
-    role = serializers.IntegerField()
+    class Meta:
+        model=Student
+        fields= '__all__'
 
+    # def create(self, validated_data):
+    #     return Student.objects.create(**validated_data)
 
-    def create(self, validated_data):
-        return Student.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
+    # def update(self, instance, validated_data):
         
-        # instance.id = validated_data.get('id', instance.id)
-        instance.name = validated_data.get('name', instance.name)
-        instance.role = validated_data.get('role', instance.role)
-        instance.save()
-        return instance
+    #     # instance.id = validated_data.get('id', instance.id)
+    #     instance.name = validated_data.get('name', instance.name)
+    #     instance.role = validated_data.get('role', instance.role)
+    #     instance.save()
+    #     return instance
 
 
 

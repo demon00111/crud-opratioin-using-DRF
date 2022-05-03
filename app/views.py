@@ -41,7 +41,7 @@ def student(request):
         stream = io.BytesIO(json_data)
         python_data= JSONParser().parse(stream)
         serializer= StudentSerializer(data= python_data)
-        if serializer.is_valid():
+        if serializer.is_valid(): 
             serializer.save()
             
             return JsonResponse(serializer.data, safe=False)
